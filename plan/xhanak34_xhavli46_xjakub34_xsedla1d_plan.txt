@@ -37,13 +37,13 @@ Knihovna matematických operací
 
 Makefile
 
-GUI
+GUI - xhavli46 , xhanak34
 
 Profiling
 
 Mockup - xhanak34, xhavli46, xjakub34, xsedla1d
 
-Rozšíření
+Rozšíření - xhavli46
 
 Instalátor a odinstalátor
 
@@ -51,7 +51,7 @@ Dokumentace
 
 Manuál
 
-Nápověda
+Nápověda - xhavli46
 
 Problémy - xhanak34, xhavli46, xjakub34, xsedla1d
 ======================================================================================================
