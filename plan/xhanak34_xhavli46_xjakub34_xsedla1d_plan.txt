@@ -31,7 +31,7 @@ Nastavení Git repozitáře - xsedla1d
 
 Specifikace knihovny matematických operací
 
-Testy
+Testy - xhanak34
 
 Knihovna matematických operací - xhanak34, xsedla1d
 
