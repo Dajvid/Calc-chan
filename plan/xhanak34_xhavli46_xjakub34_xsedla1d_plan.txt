@@ -1,0 +1,68 @@
+Členové týmu Paks
+Hanák Karel (xhanak34)
+Havlíček Lukáš (xhavli46)
+Jakubovský Adam (xjakub34)
+Sedlák David (xsedla1d)
+
+=====================================================================================================
+Termíny
+
+18. 3. Nastavení Discord serveru, repozitáře a rozdělení úkolů členům týmu
+20. 3. Odevzdání plánu
+24. 3. Vytvoření specifikace knihovny matematických operací
+31. 3. Vytvoření testů, implementace knihovný matematických operací dle specifikace, Makefile
+07. 4. GUI, Profiling, Mockup
+14. 4. Implementace rozšíření
+21. 4. Instalátor a odinstalátor, dokumentace, manuál, nápověda
+24. 4. Odevzdání produktu
+30. 4. Problémy
+02. 5. Odevzdání problémů
+03. 5. Instalace
+12. 5. Tvorba prezentace pro obhajobu
+14. 5. Obhajoba
+======================================================================================================
+Přidělení úkolů členům týmu
+
+Sepsání plánu - xhanak34
+
+Nastavení Discord serveru - xhanak34
+
+Nastavení Git repozitáře - xsedla1d
+
+Specifikace knihovny matematických operací
+
+Testy
+
+Knihovna matematických operací
+
+Makefile
+
+GUI
+
+Profiling
+
+Mockup - xhanak34, xhavli46, xjakub34, xsedla1d
+
+Rozšíření
+
+Instalátor a odinstalátor
+
+Dokumentace
+
+Manuál
+
+Nápověda
+
+Problémy - xhanak34, xhavli46, xjakub34, xsedla1d
+======================================================================================================
+Komunikační kanály - Discord
+
+Pro týmovou komunikaci používáme Discord server, kanál pro IVS tým je rozdělen na 3 textové
+podkanály a sice scheduling (plánování), development (vývoj) a changelog (změny).
+Changelog slouží členům týmu k informování o provedených změnách či implementaci nových funkcionalit.
+======================================================================================================
+Systém pro správu verzí
+
+Jako verzovací systém jsme si zvolili verzovací systém Git a repozitář je hostovaný na GitHub.com
+Jedná se o repozitář projektu Calc-chan dostupný na https://github.com/Dajvid/Calc-chan.
+Vyučíjí mohou do repozitáře nahlížet přes Github účet ivskontrola, který byl přidán mezi kolaborátory.
