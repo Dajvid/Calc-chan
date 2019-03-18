@@ -29,21 +29,21 @@ Nastavení Discord serveru - xhanak34
 
 Nastavení Git repozitáře - xsedla1d
 
-Specifikace knihovny matematických operací
+Specifikace knihovny matematických operací - xjakub34, xsedla1d
 
 Testy - xhanak34
 
 Knihovna matematických operací - xhanak34, xsedla1d
 
-Makefile
+Makefile - xsedla1d
 
-GUI - xhavli46 , xhanak34
+GUI - xhavli46, xhanak34
 
-Profiling
+Profiling - xsedla1d
 
 Mockup - xhanak34, xhavli46, xjakub34, xsedla1d
 
-Rozšíření - xhavli46
+Rozšíření - xhavli46, xsedla1d
 
 Instalátor a odinstalátor
 
