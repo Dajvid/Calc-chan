@@ -33,7 +33,7 @@ Specifikace knihovny matematických operací
 
 Testy
 
-Knihovna matematických operací
+Knihovna matematických operací - xhanak34, xsedla1d
 
 Makefile
 
@@ -47,7 +47,7 @@ Rozšíření - xhavli46
 
 Instalátor a odinstalátor
 
-Dokumentace
+Dokumentace - xhanak34
 
 Manuál
 
