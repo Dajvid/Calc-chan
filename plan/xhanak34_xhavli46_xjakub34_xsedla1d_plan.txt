@@ -23,8 +23,6 @@ Termíny
 ======================================================================================================
 Přidělení úkolů členům týmu
 
-Sepsání plánu - xhanak34
-
 Nastavení Discord serveru - xhanak34
 
 Nastavení Git repozitáře - xsedla1d
@@ -33,7 +31,7 @@ Specifikace knihovny matematických operací - xjakub34, xsedla1d
 
 Testy - xhanak34
 
-Knihovna matematických operací - xhanak34, xsedla1d, xjakub34
+Knihovna matematických operací - xhanak34, xsedla1d 
 
 Makefile - xsedla1d, xjakub34
 
@@ -45,7 +43,7 @@ Mockup - xhanak34, xhavli46, xjakub34, xsedla1d
 
 Rozšíření - xhavli46, xsedla1d
 
-Instalátor a odinstalátor
+Instalátor a odinstalátor - xjakub34
 
 Dokumentace - xhanak34
 
