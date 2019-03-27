@@ -1,8 +1,10 @@
-## @package CChanMathlib
+# @package CChanMathlib
 #  Mathematical library for CalcChan calculator.
 
+
 class CChanMathlib:
-    def add(self, a, b):
+    @staticmethod
+    def add(a, b):
         ##
         # Addition function
         # Args:
@@ -13,7 +15,8 @@ class CChanMathlib:
         #
         pass
 
-    def sub(self, a, b):
+    @staticmethod
+    def sub(a, b):
         ##
         # Subtraction function
         # Args:
@@ -24,7 +27,8 @@ class CChanMathlib:
         #
         pass
 
-    def mul(self, a, b):
+    @staticmethod
+    def mul(a, b):
         ##
         # Multiplication function
         # Args:
@@ -35,7 +39,8 @@ class CChanMathlib:
         #
         pass
 
-    def div(self, a, b):
+    @staticmethod
+    def div(a, b):
         ##
         # Division function
         # Args:
@@ -48,7 +53,8 @@ class CChanMathlib:
         #
         pass
 
-    def fact(self, a):
+    @staticmethod
+    def fact(a):
         ##
         # Factorial function
         # Args:
@@ -59,7 +65,8 @@ class CChanMathlib:
         #     ValueError.
         pass
 
-    def pow(self, a, exp):
+    @staticmethod
+    def pow(a, exp):
         ##
         # Power function
         # Args:
@@ -71,7 +78,8 @@ class CChanMathlib:
         #
         pass
 
-    def root(self, a, n):
+    @staticmethod
+    def root(a, n):
         ##
         # Root function
         # Args:
@@ -83,7 +91,8 @@ class CChanMathlib:
         #     ValueError.
         pass
 
-    def tan(self, a):
+    @staticmethod
+    def tan(a):
         ##
         # Tangents function
         # Args:
@@ -94,7 +103,8 @@ class CChanMathlib:
         #     ValueError.
         pass
 
-    def analyze(self, expr):
+    @staticmethod
+    def analyze(expr):
         ##
         # Checks syntax of expression and determines the correct order of basic operations needed
         # to evaluate the expression
@@ -106,7 +116,8 @@ class CChanMathlib:
         #     ValueError, SyntaxError, ZeroDivisionError.
         pass
 
-    def eval(self, expr):
+    @staticmethod
+    def eval(expr):
         ##
         # Eval function
         # Args:

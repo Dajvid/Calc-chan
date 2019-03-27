@@ -7,6 +7,7 @@ from CChanMathlib import CChanMathlib
 if __name__ == '__main__':
     unittest.main()
 
+
 # Tests for the addition function
 class CChanTestAddition(unittest.TestCase):
 
@@ -44,6 +45,7 @@ class CChanTestAddition(unittest.TestCase):
         self.assertEqual(CChanMathlib.add(-1.0, 1.0), 0.0)
         self.assertEqual(CChanMathlib.add(1.3, -2.7), -1.4)
         self.assertEqual(CChanMathlib.add(2.7, -1.3), 1.4)
+
 
 # Tests for the subtraction function
 class CChanTestSubtraction(unittest.TestCase):
