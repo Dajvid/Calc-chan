@@ -2,6 +2,52 @@
 #  Mathematical library for CalcChan calculator.
 
 class CChanMathlib:
+    def add(self, a, b):
+        ##
+        # Addition function
+        # Args:
+        #     a: Addition argument.
+        #     b: Addition argument.
+        # Returns:
+        #     Value of the following expression a+b.
+        #
+        pass
+
+    def sub(self, a, b):
+        ##
+        # Subtraction function
+        # Args:
+        #     a: Subtraction argument.
+        #     b: Subtraction argument.
+        # Returns:
+        #     Value of the following expression a-b.
+        #
+        pass
+
+    def mul(self, a, b):
+        ##
+        # Multiplication function
+        # Args:
+        #     a: Multiplication argument.
+        #     b: Multiplication argument.
+        # Returns:
+        #     Value of the following expression a*b.
+        #
+        pass
+
+    def div(self, a, b):
+        ##
+        # Division function
+        # Args:
+        #     a: Division argument.
+        #     b: Division argument.
+        # Returns:
+        #     Value of the following expression a/b.
+        # Raises:
+        #     ZeroDivisionError
+        #
+        pass
+
     def fact(self, a):
         ##
         # Factorial function
