@@ -182,9 +182,9 @@ class CChanFactorialTest(unittest.TestCase):
         self.assertEqual(CChanMathlib.fact(12), 479001600)
 
     def test_factorial_positive_float(self):
-        self.assertAlmostEqual(CChanMathlib.pow(0.0), 1.0)
-        self.assertAlmostEqual(CChanMathlib.pow(1.5), 1.3293, 4)
-        self.assertAlmostEqual(CChanMathlib.pow(7.25), 8376.5124, 4)
+        self.assertAlmostEqual(CChanMathlib.fact(0.0), 1.0)
+        self.assertAlmostEqual(CChanMathlib.fact(1.5), 1.3293, 4)
+        self.assertAlmostEqual(CChanMathlib.fact(7.25), 8376.5124, 4)
 
     def test_factorial_negative_integer(self):
         with self.assertRaises(ValueError):
