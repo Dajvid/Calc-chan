@@ -76,7 +76,6 @@ class CChanMathlib:
         #     Value of following expression a^exp.
         # Raises:
         #     ValueError
-        return pow(a, exp)
         pass
 
     @staticmethod

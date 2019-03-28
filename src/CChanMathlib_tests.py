@@ -202,16 +202,16 @@ class CChanPowerTest(unittest.TestCase):
         self.assertEqual(CChanMathlib.pow(2, 2), 4)
         self.assertEqual(CChanMathlib.pow(2, 5), 32)
         self.assertEqual(CChanMathlib.pow(-2, 0), 1)
-        self.assertEqual(CChanMathlib.pow(-2, 2), -4)
+        self.assertEqual(CChanMathlib.pow(-2, 2), 4)
         self.assertEqual(CChanMathlib.pow(-2, 5), -32)
 
     def test_power_float_base(self):
         self.assertAlmostEqual(CChanMathlib.pow(2.5, 0), 1.0)
         self.assertAlmostEqual(CChanMathlib.pow(2.5, 2), 6.25)
-        self.assertAlmostEqual(CChanMathlib.pow(2.5, 5), 97.6563, 4)
+        self.assertAlmostEqual(CChanMathlib.pow(2.5, 5), 97.6562, 4)
         self.assertAlmostEqual(CChanMathlib.pow(-2.5, 0), 1.0)
-        self.assertAlmostEqual(CChanMathlib.pow(-2.5, 2), -6.25)
-        self.assertAlmostEqual(CChanMathlib.pow(-2.5, 5), -97.6563, 4)
+        self.assertAlmostEqual(CChanMathlib.pow(-2.5, 2), 6.25)
+        self.assertAlmostEqual(CChanMathlib.pow(-2.5, 5), -97.6562, 4)
 
     def test_power_invalid_exp(self):
         with self.assertRaises(ValueError):
