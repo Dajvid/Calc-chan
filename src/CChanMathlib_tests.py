@@ -449,7 +449,7 @@ class CChanEvalAdvancedExpressionTest(unittest.TestCase):
         self.assertAlmostEqual(CChanMathlib.eval("√25/2+17^2"), 291.5)
 
     def test_eval_advanced_valueerror_expression(self):
-        with self.assertRaises(ValueError):
+        with self.assertRaises(ZeroDivisionError):
             CChanMathlib.eval("√25/ln1")
         with self.assertRaises(ValueError):
             CChanMathlib.eval("5^ln0.5")
