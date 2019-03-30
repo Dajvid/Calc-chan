@@ -92,13 +92,13 @@ class CChanMathlib:
         pass
 
     @staticmethod
-    def tan(a):
+    def ln(a):
         ##
-        # Tangents function
+        # Natural logarithm function
         # Args:
-        #     a: Tangents argument.
+        #     a: Natural logarithm.
         # Returns:
-        #     Value of following expression tan(a).
+        #     Value of following expression ln(a).
         # Raises:
         #     ValueError.
         pass
