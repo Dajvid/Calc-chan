@@ -122,7 +122,13 @@ class CChanMathlib:
         #     Value of following expression ln(a).
         # Raises:
         #     ValueError.
-        pass
+        if a <= 0:
+            raise ValueError("Natural logarithm argument is zero or negative.")
+        elif a == 1:
+            return 0
+        else:
+            n = 10000000000.0
+            return n * ((a ** (1/n)) - 1)
 
     @staticmethod
     def analyze(expr):

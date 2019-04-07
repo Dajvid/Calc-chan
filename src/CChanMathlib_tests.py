@@ -279,9 +279,9 @@ class CChanLnTest(unittest.TestCase):
 
     def test_ln_positive(self):
         self.assertEqual(CChanMathlib.ln(1), 0)
-        self.assertAlmostEqual(CChanMathlib.ln(0.5), -0.69314718, 8)
-        self.assertAlmostEqual(CChanMathlib.ln(5), 1.60943791, 8)
-        self.assertAlmostEqual(CChanMathlib.ln(100), 4.60517018, 8)
+        self.assertAlmostEqual(CChanMathlib.ln(0.5), -0.693147, 6)
+        self.assertAlmostEqual(CChanMathlib.ln(5), 1.609437, 6)
+        self.assertAlmostEqual(CChanMathlib.ln(100), 4.605170, 6)
 
     def test_ln_invalid(self):
         with self.assertRaises(ValueError):
@@ -380,9 +380,9 @@ class CChanEvalSimpleExpressionTest(unittest.TestCase):
 
     def test_eval_ln_expression(self):
         self.assertEqual(CChanMathlib.eval("ln1"), 0)
-        self.assertAlmostEqual(CChanMathlib.eval("ln0.5"), -0.69314718, 8)
-        self.assertAlmostEqual(CChanMathlib.eval("ln5"), 1.60943791, 8)
-        self.assertAlmostEqual(CChanMathlib.eval("ln100"), 4.60517018, 8)
+        self.assertAlmostEqual(CChanMathlib.eval("ln0.5"), -0.693147, 6)
+        self.assertAlmostEqual(CChanMathlib.eval("ln5"), 1.609437, 6)
+        self.assertAlmostEqual(CChanMathlib.eval("ln100"), 4.605170, 6)
         with self.assertRaises(ValueError):
             CChanMathlib.eval("ln0")
         with self.assertRaises(ValueError):
