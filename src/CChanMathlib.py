@@ -13,7 +13,7 @@ class CChanMathlib:
         # Returns:
         #     Value of the following expression a+b.
         #
-        pass
+        return a + b
 
     @staticmethod
     def sub(a, b):
@@ -25,7 +25,7 @@ class CChanMathlib:
         # Returns:
         #     Value of the following expression a-b.
         #
-        pass
+        return a - b
 
     @staticmethod
     def mul(a, b):
@@ -37,7 +37,7 @@ class CChanMathlib:
         # Returns:
         #     Value of the following expression a*b.
         #
-        pass
+        return a * b
 
     @staticmethod
     def div(a, b):
@@ -51,7 +51,9 @@ class CChanMathlib:
         # Raises:
         #     ZeroDivisionError
         #
-        pass
+        if b == 0:
+            raise ZeroDivisionError
+        return a / b
 
     @staticmethod
     def fact(a):
@@ -63,7 +65,14 @@ class CChanMathlib:
         #     Value of following expression a!.
         # Raises:
         #     ValueError.
-        pass
+        if type(a) != int:
+            raise ValueError("Factorial of real number.")
+        elif a < 0:
+            raise ValueError("Factorial of negative value.")
+        elif a == 0:
+            return 1
+        else:
+            return a * CChanMathlib.fact(a - 1)
 
     @staticmethod
     def pow(a, exp):
@@ -76,7 +85,14 @@ class CChanMathlib:
         #     Value of following expression a^exp.
         # Raises:
         #     ValueError
-        pass
+        if type(exp) != int:
+            raise ValueError("Exponent is not integer.")
+        elif exp < 0:
+            raise ValueError("Exponent is negative value.")
+        elif exp == 0:
+            return 1
+        else:
+            return a ** exp
 
     @staticmethod
     def root(a, n):
@@ -89,7 +105,12 @@ class CChanMathlib:
         #     Value of following expression a^(1/n).
         # Raises:
         #     ValueError.
-        pass
+        if a < 0:
+            raise ValueError("Order of root is zero or negative.")
+        elif n <= 0:
+            raise ValueError("Base value is negative or zero.")
+        else:
+            return a ** (1 / n)
 
     @staticmethod
     def ln(a):

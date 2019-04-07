@@ -181,12 +181,13 @@ class CChanFactorialTest(unittest.TestCase):
         self.assertEqual(CChanMathlib.fact(1), 1)
         self.assertEqual(CChanMathlib.fact(12), 479001600)
 
-    def test_factorial_positive_float(self):
-        self.assertAlmostEqual(CChanMathlib.fact(0.0), 1.0)
-        self.assertAlmostEqual(CChanMathlib.fact(1.5), 1.3293, 4)
-        self.assertAlmostEqual(CChanMathlib.fact(7.25), 8376.5124, 4)
-
     def test_factorial_negative_integer(self):
+        with self.assertRaises(ValueError):
+            CChanMathlib.fact(0.5)
+
+        with self.assertRaises(ValueError):
+            CChanMathlib.fact(2.5)
+
         with self.assertRaises(ValueError):
             CChanMathlib.fact(-1)
 
@@ -208,10 +209,10 @@ class CChanPowerTest(unittest.TestCase):
     def test_power_float_base(self):
         self.assertAlmostEqual(CChanMathlib.pow(2.5, 0), 1.0)
         self.assertAlmostEqual(CChanMathlib.pow(2.5, 2), 6.25)
-        self.assertAlmostEqual(CChanMathlib.pow(2.5, 5), 97.6562, 4)
+        self.assertAlmostEqual(CChanMathlib.pow(2.5, 5), 97.65625, 5)
         self.assertAlmostEqual(CChanMathlib.pow(-2.5, 0), 1.0)
         self.assertAlmostEqual(CChanMathlib.pow(-2.5, 2), 6.25)
-        self.assertAlmostEqual(CChanMathlib.pow(-2.5, 5), -97.6562, 4)
+        self.assertAlmostEqual(CChanMathlib.pow(-2.5, 5), -97.65625, 5)
 
     def test_power_invalid_exp(self):
         with self.assertRaises(ValueError):
