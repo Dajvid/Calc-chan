@@ -1,6 +1,7 @@
 # @package CChanMathlib
 #  Mathematical library for CalcChan calculator.
-
+import re
+import sys
 
 class CChanMathlib:
     @staticmethod
@@ -131,17 +132,105 @@ class CChanMathlib:
             return n * ((a ** (1/n)) - 1)
 
     @staticmethod
-    def analyze(expr):
-        ##
-        # Checks syntax of expression and determines the correct order of basic operations needed
-        # to evaluate the expression
-        # Args:
-        #     expr: expression represented as a string of supported mathematical functions and their operands
-        # Returns:
-        #     List of operations in correct order to evaluate the expression
-        # Raises:
-        #     ValueError, SyntaxError, ZeroDivisionError.
-        pass
+    def tokenize(expr):
+        result = []
+        new = ""
+        while(expr != ""):
+            expr = expr.lstrip()
+            if (re.match(r"\+", expr)):
+                match = re.match(r"\+", expr)
+                match = match.group(0)
+                new = ("+", match)
+            elif (re.match(r"-", expr)):
+                match = re.match(r"-", expr)
+                match = match.group(0)
+                new = ("-", match)
+            elif (re.match(r"\*", expr)):
+                match = re.match(r"\*", expr)
+                match = match.group(0)
+                new = ("*", match)
+            elif (re.match(r"/", expr)):
+                match = re.match(r"/", expr)
+                match = match.group(0)
+                new = ("/", match)
+            elif (re.match(r"\^", expr)):
+                match = re.match(r"\^", expr)
+                match = match.group(0)
+                new = ("^", match)
+            elif (re.match(r"√", expr)):
+                match = re.match(r"√", expr)
+                match = match.group(0)
+                new = ("√", match)
+            elif (re.match(r"\(", expr)):
+                match = re.match(r"\(", expr)
+                match = match.group(0)
+                new = ("(", match)
+            elif (re.match(r"\)", expr)):
+                match = re.match(r"\)", expr)
+                match = match.group(0)
+                new = (")", match)
+            elif (re.match(r"^\d*\.\d*", expr)):
+                match = re.match(r"^\d*\.\d*", expr)
+                match = match.group(0)
+                new = ("i", float(match))
+            elif (re.match(r"([0-9]+)", expr)):
+                match = re.match(r"([0-9]+)", expr)
+                match = match.group(0)
+                new = ("i", int(match))
+            elif (re.match(r"ln", expr)):
+                match = re.match(r"ln", expr)
+                match = match.group(0)
+                new = ("ln", match)
+            elif (re.match(r"\!", expr)):
+                match = re.match(r"\!", expr)
+                match = match.group(0)
+                new = ("!", match)
+            else:
+                raise SyntaxError(f"Unknown character sequnce {expr} in the expression")
+            result.append(new)
+            expr = expr[len(match):]
+        result.append(("$", "$"))
+
+        return result
+
+    @staticmethod
+    def is_terminal(stack_item):
+        e = stack_item[0]
+        return (e == "+" or e == "-" or e == "*" or e == "/" or e== "^" or e== "√" or e== "(" or e== ")" or e== "i" or e== "ln" or e== "!" or e== "$")
+
+    @staticmethod
+    def get_top_terminal(stack):
+        for item in reversed(stack):
+            if (CChanMathlib.is_terminal(item)):
+                return item
+        return None
+
+    @staticmethod
+    def get_top_sequence(stack):
+        for i, item in enumerate(reversed(stack)):
+            if (item[0] == "<"):
+                return stack[len(stack) - i:len(stack)]
+        
+        return None
+
+    @staticmethod
+    def is_reducible(sequnce, rules):
+        stripped_sequence = []
+        for item in sequnce:
+            stripped_sequence.append(item[0])
+
+        for i, rule in enumerate(rules):
+            if rule == stripped_sequence:
+                return i
+        
+        return -1
+
+    @staticmethod
+    def insert_handle(item, stack):
+        for i, stack_item in enumerate(reversed(stack)):
+            if (stack_item[0] == item[0]):
+                stack.insert(len(stack) - i, ("<", "<"))
+                return
 
     @staticmethod
     def eval(expr):
@@ -153,4 +242,169 @@ class CChanMathlib:
         #     Value of expr after evaluation.
         # Raises:
         #     ValueError, SyntaxError, ZeroDivisionError.
-        pass
+        PSA_table = {
+            "+"  : {"+" : ">", "-" : ">", "*": "<", "/": "<", "^": "<", "√": "<", "(": "<", ")": ">", "i": "<", "ln": "<", "!":  "", "$": ">"},
+            "-"  : {"+" : ">", "-" : ">", "*": "<", "/": "<", "^": "<", "√": "<", "(": "<", ")": ">", "i": "<", "ln": "<", "!":  "", "$": ">"},
+            "*"  : {"+" : ">", "-" : ">", "*": ">", "/": ">", "^": "<", "√": "<", "(": "<", ")": ">", "i": "<", "ln": "<", "!":  "", "$": ">"},
+            "/"  : {"+" : ">", "-" : ">", "*": ">", "/": ">", "^": "<", "√": "<", "(": "<", ")": ">", "i": "<", "ln": "<", "!":  "", "$": ">"},
+            "^"  : {"+" : ">", "-" : ">", "*": ">", "/": ">", "^": "<", "√": "<", "(": "<", ")": ">", "i": "<", "ln": "<", "!":  "", "$": ">"},
+            "√"  : {"+" : ">", "-" : ">", "*": ">", "/": ">", "^": "<", "√": "<", "(": "<", ")": ">", "i": "<", "ln": "<", "!":  "", "$": ">"},
+            "("  : {"+" : "<", "-" : "<", "*": "<", "/": "<", "^": "<", "√": "<", "(": "<", ")": "=", "i": "<", "ln": "<", "!": "<", "$":  ""},
+            ")"  : {"+" : ">", "-" : ">", "*": ">", "/": ">", "^": ">", "√": ">", "(":  "", ")": ">", "i":  "", "ln":  "", "!": ">", "$": ">"},
+            "i"  : {"+" : ">", "-" : ">", "*": ">", "/": ">", "^": ">", "√": ">", "(":  "", ")": ">", "i":  "", "ln":  "", "!": ">", "$": ">"},
+            "ln" : {"+" :  "", "-" :  "", "*":  "", "/":  "", "^":  "", "√":  "", "(": "=", ")":  "", "i":  "", "ln":  "", "!":  "", "$":  ""},
+            "!"  : {"+" : ">", "-" : ">", "*": ">", "/": ">", "^": ">", "√": ">", "(":  "", ")": ">", "i":  "", "ln":  "", "!": ">", "$": ">"},
+            "$"  : {"+" : "<", "-" : "<", "*": "<", "/": "<", "^": "<", "√": "<", "(": "<", ")":  "", "i": "<", "ln": "<", "!": "<", "$":  ""},
+        }
+
+        rules = [
+            ["E", "+", "E"],           #0
+            ["E", "-", "E"],           #1
+            ["E", "*", "E"],           #2
+            ["E", "/", "E"],           #3 
+            ["E", "^", "E"],           #4
+            ["E", "√", "E"],           #5
+            ["(", "E", ")"],           #6
+            ["i"],                     #7
+            ["ln", "(", "E", ")"],     #8
+            ["E", "!"],                #9
+        ]
+
+        stack = [("$", "$")]
+        input = CChanMathlib.tokenize(expr)
+
+        in_top = input[0]
+        del(input[0])
+
+        while True:
+            print(stack)
+            stack_top = CChanMathlib.get_top_terminal(stack)
+            operation = PSA_table[stack_top[0]][in_top[0]]
+            if (stack_top[0] == "$" and in_top[0] == "$"):
+                res = stack.pop()
+                return(res[1])
+            elif (operation == "="):
+                stack.append(in_top)
+                in_top = input[0]
+                del(input[0])
+
+            elif (operation == "<"):
+                CChanMathlib.insert_handle(stack_top, stack)
+                stack.append(in_top)
+                in_top = input[0]
+                del(input[0])
+            elif (operation == ">"):
+                sequence = CChanMathlib.get_top_sequence(stack)
+                if (sequence == None):
+                    raise SyntaxError("Unreducible sequence")
+                index = CChanMathlib.is_reducible(sequence, rules)
+                if (index == -1):
+                    raise SyntaxError("Unreducible sequence")
+                # E + E
+                if (index == 0):
+                    #pop arguments
+                    b = stack.pop()[1]
+                    stack.pop()
+                    a = stack.pop()[1]
+                    #pop rule handle
+                    stack.pop()
+                    #push new nonterminal
+                    stack.append(("E", CChanMathlib.add(a, b)))
+                # E - E
+                elif (index == 1):
+                    #pop arguments
+                    b = stack.pop()[1]
+                    stack.pop()
+                    a = stack.pop()[1]
+                    #pop rule handle
+                    stack.pop()
+                    #push new nonterminal
+                    stack.append(("E", CChanMathlib.sub(a, b)))
+                # E * E
+                elif (index == 2):
+                    #pop arguments
+                    b = stack.pop()[1]
+                    stack.pop()
+                    a = stack.pop()[1]
+                    #pop rule handle
+                    stack.pop()
+                    #push new nonterminal
+                    stack.append(("E", CChanMathlib.mul(a, b)))
+                # E / E
+                elif (index == 3):
+                    #pop arguments
+                    b = stack.pop()[1]
+                    stack.pop()
+                    a = stack.pop()[1]
+                    #pop rule handle
+                    stack.pop()
+                    #push new nonterminal
+                    stack.append(("E", CChanMathlib.div(a, b)))
+                # E ^ E
+                elif (index == 4):
+                    #pop arguments
+                    b = stack.pop()[1]
+                    stack.pop()
+                    a = stack.pop()[1]
+                    #pop rule handle
+                    stack.pop()
+                    #push new nonterminal
+                    stack.append(("E", CChanMathlib.pow(a, b)))
+                # E √ E
+                elif (index == 5):
+                    #pop arguments
+                    b = stack.pop()[1]
+                    stack.pop()
+                    a = stack.pop()[1]
+                    #pop rule handle
+                    stack.pop()
+                    #push new nonterminal
+                    stack.append(("E", CChanMathlib.root(b, a)))
+                # ( E )
+                elif (index == 6):
+                    #pop arguments
+                    stack.pop()
+                    a = stack.pop()[1]
+                    stack.pop()
+                    #pop rule handle
+                    stack.pop()
+                    #push new nonterminal
+                    stack.append(("E", a))
+                # i 
+                elif (index == 7):
+                    #pop arguments
+                    a = stack.pop()[1]
+                    #pop rule handle
+                    stack.pop()
+                    #push new nonterminal
+                    stack.append(("E", a))
+                    pass
+                # ln ( E )
+                elif (index == 8):
+                    #pop arguments
+                    stack.pop()
+                    a = stack.pop()[1]
+                    stack.pop()
+                    stack.pop()
+                    #pop rule handle
+                    stack.pop()
+                    #create new nonterminal
+                    stack.append(("E", CChanMathlib.ln(a)))
+                # E !
+                elif (index == 9):
+                    #pop arguments
+                    stack.pop()
+                    a = stack.pop()[1]
+                    #pop rule handle
+                    stack.pop()
+                    #create new nonterminal
+                    stack.append(("E", CChanMathlib.fact(a)))
+                else:
+                    raise SyntaxError("unreducible sequence")
+
+            else:
+                raise SyntaxError("Unknown sequence of lexems")
+            
+#print(CChanMathlib.pow(5, -0.6931))
+print(CChanMathlib.eval("5√125"))
+#p  rint(CChanMathlib.get_top_sequence([("E", "E"), ("<", "<"), ("E", "E"), ("+", "+"), ("E", "E")]))

@@ -2,7 +2,7 @@
 # Run using: "python3 -m unittest CChanMathlib_tests.py"
 
 import unittest
-from src.CChanMathlib import CChanMathlib
+from CChanMathlib import CChanMathlib
 
 if __name__ == '__main__':
     unittest.main()
@@ -299,11 +299,11 @@ class CChanEvalSimpleExpressionTest(unittest.TestCase):
         self.assertEqual(CChanMathlib.eval("0+5"), 5)
         self.assertEqual(CChanMathlib.eval("5+0"), 5)
         self.assertEqual(CChanMathlib.eval("15+17"), 32)
-        self.assertEqual(CChanMathlib.eval("-3+9"), 6)
-        self.assertEqual(CChanMathlib.eval("3+-9"), -6)
-        self.assertEqual(CChanMathlib.eval("-5+-5"), -10)
-        self.assertAlmostEqual(CChanMathlib.eval("-2.7+4"), 1.3)
-        self.assertAlmostEqual(CChanMathlib.eval("4+-2.7"), 1.3)
+        self.assertEqual(CChanMathlib.eval("3+9"), 12)
+        self.assertEqual(CChanMathlib.eval("3-9"), -6)
+        self.assertEqual(CChanMathlib.eval("5-5"), 0)
+        self.assertAlmostEqual(CChanMathlib.eval("4-2.7"), 1.3)
+        self.assertAlmostEqual(CChanMathlib.eval("4-2.7"), 1.3)
         self.assertEqual(CChanMathlib.eval("2.7+1.3"), 4)
 
     def test_eval_subtraction_expression(self):
@@ -331,7 +331,7 @@ class CChanEvalSimpleExpressionTest(unittest.TestCase):
     def test_eval_division_expression(self):
         self.assertAlmostEqual(CChanMathlib.eval("1/5"), 0.2)
         self.assertEqual(CChanMathlib.eval("5/1"), 5)
-        self.assertAlmostEqual(CChanMathlib.eval("15/17"), 0.8823, 4)
+        self.assertAlmostEqual(CChanMathlib.eval("15/17"), 0.88235, 5)
         self.assertAlmostEqual(CChanMathlib.eval("-3/9"), -0.3333, 4)
         self.assertAlmostEqual(CChanMathlib.eval("3/-9"), -0.3333, 4)
         self.assertEqual(CChanMathlib.eval("-5/-5"), 1)
@@ -358,9 +358,9 @@ class CChanEvalSimpleExpressionTest(unittest.TestCase):
 
     def test_eval_root_expression(self):
         self.assertEqual(CChanMathlib.eval("3√0"), 0)
-        self.assertEqual(CChanMathlib.eval("√25"), 5)
+        self.assertEqual(CChanMathlib.eval("2√25"), 5)
         self.assertEqual(CChanMathlib.eval("4√81"), 3)
-        self.assertAlmostEqual(CChanMathlib.eval("5√125"), 2.6656, 4)
+        self.assertAlmostEqual(CChanMathlib.eval("5√125"), 2.6265, 4)
         self.assertEqual(CChanMathlib.eval("0.5√5"), 25)
         self.assertAlmostEqual(CChanMathlib.eval("2.5√10"), 2.5119, 4)
         with self.assertRaises(ValueError):
@@ -379,16 +379,16 @@ class CChanEvalSimpleExpressionTest(unittest.TestCase):
             CChanMathlib.eval("-5.5√-125")
 
     def test_eval_ln_expression(self):
-        self.assertEqual(CChanMathlib.eval("ln1"), 0)
-        self.assertAlmostEqual(CChanMathlib.eval("ln0.5"), -0.693147, 6)
-        self.assertAlmostEqual(CChanMathlib.eval("ln5"), 1.609437, 6)
-        self.assertAlmostEqual(CChanMathlib.eval("ln100"), 4.605170, 6)
+        self.assertEqual(CChanMathlib.eval("ln(1)"), 0)
+        self.assertAlmostEqual(CChanMathlib.eval("ln(0.5)"), -0.693147, 6)
+        self.assertAlmostEqual(CChanMathlib.eval("ln(5)"), 1.609437, 6)
+        self.assertAlmostEqual(CChanMathlib.eval("ln(100)"), 4.605170, 6)
         with self.assertRaises(ValueError):
-            CChanMathlib.eval("ln0")
+            CChanMathlib.eval("ln(0)")
         with self.assertRaises(ValueError):
-            CChanMathlib.eval("ln-0.5")
+            CChanMathlib.eval("ln(-0.5)")
         with self.assertRaises(ValueError):
-            CChanMathlib.eval("ln-5")
+            CChanMathlib.eval("ln(-5)")
 
     def test_eval_simple_invalid_expression(self):
         with self.assertRaises(SyntaxError):
@@ -443,23 +443,23 @@ class CChanEvalAdvancedExpressionTest(unittest.TestCase):
     def test_eval_advanced_expression(self):
         self.assertEqual(CChanMathlib.eval("5+4-3*2/1"), 3)
         self.assertEqual(CChanMathlib.eval("5!/120"), 1)
-        self.assertEqual(CChanMathlib.eval("√25*ln1"), 0)
+        self.assertEqual(CChanMathlib.eval("2√25*ln(1)"), 0)
         self.assertEqual(CChanMathlib.eval("5^2+14/2"), 32)
-        self.assertEqual(CChanMathlib.eval("1734^ln1"), 1)
-        self.assertAlmostEqual(CChanMathlib.eval("ln10^2"), 4.60517018, 8)
-        self.assertAlmostEqual(CChanMathlib.eval("√25/2+17^2"), 291.5)
+        self.assertEqual(CChanMathlib.eval("1734^ln(1)"), 1)
+        self.assertAlmostEqual(CChanMathlib.eval("ln(10^2)"), 4.60517018, 5)
+        self.assertAlmostEqual(CChanMathlib.eval("2√25/2+17^2"), 291.5)
 
     def test_eval_advanced_valueerror_expression(self):
         with self.assertRaises(ZeroDivisionError):
-            CChanMathlib.eval("√25/ln1")
+            CChanMathlib.eval("2√25/ln(1)")
         with self.assertRaises(ValueError):
-            CChanMathlib.eval("5^ln0.5")
+            CChanMathlib.eval("5^ln(0.5)")
         with self.assertRaises(ValueError):
-            CChanMathlib.eval("ln0.5√25")
+            CChanMathlib.eval("ln(0.5)√25")
         with self.assertRaises(ValueError):
-            CChanMathlib.eval("5√ln0.5")
+            CChanMathlib.eval("5√ln(0.5)")
         with self.assertRaises(ValueError):
-            CChanMathlib.eval("ln0^5")
+            CChanMathlib.eval("ln(0^5)")
 
     def test_eval_invalid_advanced_expression(self):
         with self.assertRaises(SyntaxError):
