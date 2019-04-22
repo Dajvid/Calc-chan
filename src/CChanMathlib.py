@@ -233,6 +233,17 @@ class CChanMathlib:
                 return
 
     @staticmethod
+    def minus_recovery(input, stack, in_top):
+        try:
+            a = input[0]
+            if (in_top[0] == '-' and a[0] == 'i'):
+                del(input[0])
+                return (True, (a[0], a[1] * (-1)))
+            return (False, a)
+        except(IndexError):
+            return (False, None)
+
+    @staticmethod
     def eval(expr):
         ##
         # Eval function
@@ -268,6 +279,7 @@ class CChanMathlib:
             ["i"],                     #7
             ["ln", "(", "E", ")"],     #8
             ["E", "!"],                #9
+            ["-", "E"],                #10
         ]
 
         stack = [("$", "$")]
@@ -277,7 +289,6 @@ class CChanMathlib:
         del(input[0])
 
         while True:
-            print(stack)
             stack_top = CChanMathlib.get_top_terminal(stack)
             operation = PSA_table[stack_top[0]][in_top[0]]
             if (stack_top[0] == "$" and in_top[0] == "$"):
@@ -299,9 +310,15 @@ class CChanMathlib:
                     raise SyntaxError("Unreducible sequence")
                 index = CChanMathlib.is_reducible(sequence, rules)
                 if (index == -1):
-                    raise SyntaxError("Unreducible sequence")
+                    ret, in_top = CChanMathlib.minus_recovery(input, stack, in_top)
+                    if (ret == False):
+                        raise SyntaxError("Unreducible sequence")
+                # recover from parsing 'error'
+                if (index == -1):
+                    pass
+
                 # E + E
-                if (index == 0):
+                elif (index == 0):
                     #pop arguments
                     b = stack.pop()[1]
                     stack.pop()
@@ -399,12 +416,18 @@ class CChanMathlib:
                     stack.pop()
                     #create new nonterminal
                     stack.append(("E", CChanMathlib.fact(a)))
+                # - E
+                elif (index == 10):
+                    #pop arguments
+                    a = stack.pop()[1]
+                    stack.pop()
+                    #pop rule handle
+                    stack.pop()
+                    #create new nonterminal
+                    stack.append((("E"), a * -1))
+
                 else:
-                    raise SyntaxError("unreducible sequence")
+                    raise SyntaxError("Unreducible sequence")
 
             else:
                 raise SyntaxError("Unknown sequence of lexems")
-            
-#print(CChanMathlib.pow(5, -0.6931))
-print(CChanMathlib.eval("5√125"))
-#p  rint(CChanMathlib.get_top_sequence([("E", "E"), ("<", "<"), ("E", "E"), ("+", "+"), ("E", "E")]))

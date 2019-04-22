@@ -2,7 +2,7 @@
 # Run using: "python3 -m unittest CChanMathlib_tests.py"
 
 import unittest
-from CChanMathlib import CChanMathlib
+from src.CChanMathlib import CChanMathlib
 
 if __name__ == '__main__':
     unittest.main()
@@ -336,7 +336,7 @@ class CChanEvalSimpleExpressionTest(unittest.TestCase):
         self.assertAlmostEqual(CChanMathlib.eval("3/-9"), -0.3333, 4)
         self.assertEqual(CChanMathlib.eval("-5/-5"), 1)
         self.assertAlmostEqual(CChanMathlib.eval("-2.7/4"), -0.675)
-        self.assertAlmostEqual(CChanMathlib.eval("4/-2.7"), -1.4814, 4)
+        self.assertAlmostEqual(CChanMathlib.eval("4/-2.7"), -1.48148, 4)
         self.assertAlmostEqual(CChanMathlib.eval("2.7/1.3"), 2.0769, 4)
         with self.assertRaises(ZeroDivisionError):
             CChanMathlib.eval("5/0")
@@ -345,8 +345,8 @@ class CChanEvalSimpleExpressionTest(unittest.TestCase):
         self.assertEqual(CChanMathlib.eval("0^5"), 0)
         self.assertEqual(CChanMathlib.eval("5^0"), 1)
         self.assertEqual(CChanMathlib.eval("5^7"), 78125)
-        self.assertEqual(CChanMathlib.eval("-3^9"), -58442)
-        self.assertAlmostEqual(CChanMathlib.eval("-2.7^4"), 53.1441)
+        self.assertEqual(CChanMathlib.eval("-3^9"), -19683)
+        self.assertAlmostEqual(CChanMathlib.eval("-2.7^4"), -53.1441)
         with self.assertRaises(ValueError):
             CChanMathlib.eval("3^-9")
         with self.assertRaises(ValueError):
@@ -370,13 +370,13 @@ class CChanEvalSimpleExpressionTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             CChanMathlib.eval("2√-25")
         with self.assertRaises(ValueError):
-            CChanMathlib.eval("-2√25")
+            CChanMathlib.eval("(-2)√25")
         with self.assertRaises(ValueError):
             CChanMathlib.eval("5.5√-125")
         with self.assertRaises(ValueError):
-            CChanMathlib.eval("-5.5√125")
+            CChanMathlib.eval("(-5.5)√125")
         with self.assertRaises(ValueError):
-            CChanMathlib.eval("-5.5√-125")
+            CChanMathlib.eval("(-5.5)√-125")
 
     def test_eval_ln_expression(self):
         self.assertEqual(CChanMathlib.eval("ln(1)"), 0)
@@ -401,8 +401,6 @@ class CChanEvalSimpleExpressionTest(unittest.TestCase):
             CChanMathlib.eval("-+1")
         with self.assertRaises(SyntaxError):
             CChanMathlib.eval("1-")
-        with self.assertRaises(SyntaxError):
-            CChanMathlib.eval("-1")
         with self.assertRaises(SyntaxError):
             CChanMathlib.eval("1*")
         with self.assertRaises(SyntaxError):
