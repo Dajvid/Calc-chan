@@ -1,14 +1,14 @@
-# -*- coding: utf-8 -*-
-#GUI for calc-chan
+# @package CchanGui
+# GUI for calc-chan
 from CChanMathlib import CChanMathlib
 import tkinter as tk 
 import tkinter.messagebox as tkmsg
 
 import random
 
+##
+# @brief Function that pops up new window (showinfo from messagebox) which show some help how to use calc-chan
 def Napoveda():
-    ##
-    # Function that pops up new window (showinfo from messagebox) which show some help how to use calc-chan
     tkmsg.showinfo("Calc-chan nápověda","""Calc-chan dovoluje zápis matematický výrazů přímo do pole k tomu určenému.\n
 Další možností jsou tlačítka která přidávají text za kurzor.\n
 Speciální funkce:
@@ -22,18 +22,16 @@ Speciální funkce:
     Value error - např. ln(0)
     ZeroDivison - dělení nulou""")
 
-
+##
+# @brief Function to add string to end of expression
+# @param text_to_add text that will be added to end of expression on display
 def add_to_str(text_to_add):
-    ##
-    # Function to add string to end of expression
-    # Args:
-    #   text_to_add: text that will be added to end of expression on display
-    display.insert(tk.INSERT,text_to_add)
-    
+        display.insert(tk.INSERT,text_to_add)
 
+    
+##
+# @brief Function to evaluate expression in display and set that expression back
 def calc_chan_do_the_calc():
-    ##
-    # Function to evaluate expression in display and set that expression back
     expr=display.get(1.0,tk.END).strip()
     try:
         vysledek=str(CChanMathlib.eval(expr))
@@ -46,16 +44,17 @@ def calc_chan_do_the_calc():
     display.delete(1.0,tk.END)
     display.insert(1.0,vysledek)
 
+
+##
+# @brief Function to add random number in range <0,1> to end of expression on display
 def str_random():
-    ##
-    # Function to add random number in range <0,1> to end of expression on display
-    
     #momentalne zbytecna fce protoze pro tlacitko random nezbylo misto
     display.insert(tk.INSERT,str(random.random()))
 
+
+##
+# @brief Function that deletes last character of expression on display
 def str_ce():
-    ##
-    # Function that deletes last character of expression on display
     line,char=display.index(tk.INSERT).split(".",1)
     if line==1 and char==0:
         return#cursor je na zacatku
@@ -63,9 +62,10 @@ def str_ce():
         char=str(int(char)-1)
     display.delete(line+"."+char)
 
+    
+##
+# @brief Function that deletes whole expression on display
 def str_del():
-    ##
-    # Function that deletes whole expression on display
     display.delete(1.0,tk.END)
     
 
