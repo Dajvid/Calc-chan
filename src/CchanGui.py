@@ -10,14 +10,17 @@ def Napoveda():
     ##
     # Function that pops up new window (showinfo from messagebox) which show some help how to use calc-chan
     tkmsg.showinfo("Calc-chan nápověda","""Calc-chan dovoluje zápis matematický výrazů přímo do pole k tomu určenému.\n
-Další možností jsou tlačítka která přidávají text na konec výrazu.\n
+Další možností jsou tlačítka která přidávají text za kurzor.\n
 Speciální funkce:
     DEL - smaže celý výraz
-    CE - smaže poslední znak
-    ln - přirozený logaritmus
+    CE - smaže znak před kurzorem
+    ln( ) - přirozený logaritmus
     ! - faktoriál
-    ^ - mocina, číslo před určuje základ mocniny a číslo za exponent
-    √ - odmocnina, číslo před je odmocnitel a číslo za odmocněnec""")
+    ^ - mocina
+    √ - odmocnina
+    Syntax error - špatně zapsaný výraz
+    Value error - např. ln(0)
+    ZeroDivison - dělení nulou""")
 
 
 def add_to_str(text_to_add):
