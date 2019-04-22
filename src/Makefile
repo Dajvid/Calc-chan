@@ -1,6 +1,6 @@
 PROJ = CChan
-SRC = ./src/
 INT = python3
+SRC = /src/
 
 all: ;
 
@@ -8,11 +8,16 @@ pack:
 
 clean:
 	rm -r $(SRC)__pycache__
+
 test:
-	$(INT) -m unittest $(SRC)$(PROJ)Mathlib_tests.py
-doc:
+	$(INT) -m unittest $(PROJ)Mathlib_tests.py
+
+doc: Doxyfile
+	rm -rf ../doc
+	mkdir ../doc
+	cd ../doc && doxygen ..$(SRC)/$<
 
 run:
-	$(INT) $(SRC)$(PROJ)Gui.py
+	$(INT) $(PROJ)Gui.py
 
 profile:
