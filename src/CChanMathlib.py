@@ -143,7 +143,7 @@ class CChanMathlib:
 
     ##
     # @brief Turn input string into list of tokens.
-    # 
+    #
     # @param expr Expression in a string format.
     #
     # @return List of tokens.
@@ -238,7 +238,7 @@ class CChanMathlib:
 
     ##
     # @brief Get top sequence starting with stack element ('<', '<').
-    # 
+    #
     # @param stack PSA stack.
     #
     # @return Top sequence from stack.
@@ -248,7 +248,7 @@ class CChanMathlib:
         for i, item in enumerate(reversed(stack)):
             if (item[0] == "<"):
                 return stack[len(stack) - i:len(stack)]
-        
+
         return None
 
     ##
@@ -268,12 +268,12 @@ class CChanMathlib:
         for i, rule in enumerate(rules):
             if rule == stripped_sequence:
                 return i
-        
+
         return -1
 
     ##
     # @brief Insert sequence handle ('<', '<') after first occurrence of given stack element.
-    # 
+    #
     # @param item Stack element to search.
     # @param stack PSA stack.
     #
@@ -340,7 +340,7 @@ class CChanMathlib:
             ["E", "+", "E"],           #0
             ["E", "-", "E"],           #1
             ["E", "*", "E"],           #2
-            ["E", "/", "E"],           #3 
+            ["E", "/", "E"],           #3
             ["E", "^", "E"],           #4
             ["E", "√", "E"],           #5
             ["(", "E", ")"],           #6
@@ -455,7 +455,7 @@ class CChanMathlib:
                     stack.pop()
                     #push new nonterminal
                     stack.append(("E", a))
-                # i 
+                # i
                 elif (index == 7):
                     #pop arguments
                     a = stack.pop()[1]

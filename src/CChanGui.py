@@ -1,7 +1,7 @@
 # @package CchanGui
 # GUI for calc-chan
 from CChanMathlib import CChanMathlib
-import tkinter as tk 
+import tkinter as tk
 import tkinter.messagebox as tkmsg
 
 import random
@@ -28,7 +28,7 @@ Speciální funkce:
 def add_to_str(text_to_add):
         display.insert(tk.INSERT,text_to_add)
 
-    
+
 ##
 # @brief Function to evaluate expression in display and set that expression back
 def calc_chan_do_the_calc():
@@ -62,12 +62,12 @@ def str_ce():
         char=str(int(char)-1)
     display.delete(line+"."+char)
 
-    
+
 ##
 # @brief Function that deletes whole expression on display
 def str_del():
     display.delete(1.0,tk.END)
-    
+
 
 
 hlavni=tk.Tk()
