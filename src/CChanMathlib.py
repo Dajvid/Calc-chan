@@ -85,9 +85,9 @@ class CChanMathlib:
     # @brief Computes base to the power of exponent.
     #
     # @param a Base
-    # @param b Exponent
+    # @param exp Exponent
     #
-    # @return a to the power of b
+    # @return a to the power of exp
     #
     # @exception ValueError If the exponent is negative or a real number, the function raises ValueError.
     #
