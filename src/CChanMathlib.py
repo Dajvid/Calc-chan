@@ -1,71 +1,77 @@
-# @package CChanMathlib
-#  Mathematical library for CalcChan calculator.
-import re
-import sys
+## @package CChanMathlib
+# Mathematical library for Calc-chan calculator.
+#
 
+import re
+
+##
+# @brief Class representing the Calc-chan math library.
+#
 class CChanMathlib:
+
+    ##
+    # @brief Computes the sum of two numbers.
+    #
+    # @param a Summand
+    # @param b Addend
+    #
+    # @return Sum of a and b
+    #
     @staticmethod
     def add(a, b):
-        ##
-        # Addition function
-        # Args:
-        #     a: Addition argument.
-        #     b: Addition argument.
-        # Returns:
-        #     Value of the following expression a+b.
-        #
         return a + b
 
+    ##
+    # @brief Computes the difference of two numbers.
+    #
+    # @param a Minuend
+    # @param b Subtrahend
+    #
+    # @return Difference of a and b
+    #
     @staticmethod
     def sub(a, b):
-        ##
-        # Subtraction function
-        # Args:
-        #     a: Subtraction argument.
-        #     b: Subtraction argument.
-        # Returns:
-        #     Value of the following expression a-b.
-        #
         return a - b
 
+    ##
+    # @brief Computes the product of two numbers.
+    #
+    # @param a Multiplicand
+    # @param b Multiplier
+    #
+    # @return Product of a and b
+    #
     @staticmethod
     def mul(a, b):
-        ##
-        # Multiplication function
-        # Args:
-        #     a: Multiplication argument.
-        #     b: Multiplication argument.
-        # Returns:
-        #     Value of the following expression a*b.
-        #
         return a * b
 
+    ##
+    # @brief Computes the quotient from two numbers.
+    #
+    # @param a Dividend
+    # @param b Divisor
+    #
+    # @return Quotient of a and b
+    #
+    # @exception ZeroDivisionError If a divisor is zero, the function raises ZeroDivisionError.
+    #
     @staticmethod
     def div(a, b):
-        ##
-        # Division function
-        # Args:
-        #     a: Division argument.
-        #     b: Division argument.
-        # Returns:
-        #     Value of the following expression a/b.
-        # Raises:
-        #     ZeroDivisionError
-        #
         if b == 0:
             raise ZeroDivisionError
         return a / b
 
+    ##
+    # @brief Computes the factorial of number.
+    #
+    # @param a Positive integer
+    #
+    # @return Factorial of a
+    #
+    # @exception ValueError If a negative or real number, the function raises ValueError.
+    #
     @staticmethod
     def fact(a):
-        ##
-        # Factorial function
-        # Args:
-        #     a: Factorial argument.
-        # Returns:
-        #     Value of following expression a!.
-        # Raises:
-        #     ValueError.
         if type(a) != int:
             raise ValueError("Factorial of real number.")
         elif a < 0:
@@ -75,17 +81,18 @@ class CChanMathlib:
         else:
             return a * CChanMathlib.fact(a - 1)
 
+    ##
+    # @brief Computes base to the power of exponent.
+    #
+    # @param a Base
+    # @param exp Exponent
+    #
+    # @return a to the power of exp
+    #
+    # @exception ValueError If the exponent is negative or a real number, the function raises ValueError.
+    #
     @staticmethod
     def pow(a, exp):
-        ##
-        # Power function
-        # Args:
-        #     a:   Base.
-        #     exp: Power.
-        # Returns:
-        #     Value of following expression a^exp.
-        # Raises:
-        #     ValueError
         if type(exp) != int:
             raise ValueError("Exponent is not integer.")
         elif exp < 0:
@@ -95,17 +102,19 @@ class CChanMathlib:
         else:
             return a ** exp
 
+    ##
+    # @brief Computes n-th root of a number
+    #
+    # @param a base
+    # @param n order of root
+    #
+    # @return n-th root of a
+    #
+    # @exception ValueError If the base value is negative or zero, the function raises ValueError.
+    # If the order of root is negative or zero, the function also raises ValueError.
+    #
     @staticmethod
     def root(a, n):
-        ##
-        # Root function
-        # Args:
-        #     a: Base.
-        #     n: Order of root.
-        # Returns:
-        #     Value of following expression a^(1/n).
-        # Raises:
-        #     ValueError.
         if a < 0:
             raise ValueError("Order of root is zero or negative.")
         elif n <= 0:
@@ -113,16 +122,17 @@ class CChanMathlib:
         else:
             return a ** (1 / n)
 
+    ##
+    # @brief Computes natural logarithm a number.
+    #
+    # @param a Positive real number
+    #
+    # @return natural logarithm of a
+    #
+    # @exception ValueError If the number is negative or zero, the function raises ValueError.
+    #
     @staticmethod
     def ln(a):
-        ##
-        # Natural logarithm function
-        # Args:
-        #     a: Natural logarithm.
-        # Returns:
-        #     Value of following expression ln(a).
-        # Raises:
-        #     ValueError.
         if a <= 0:
             raise ValueError("Natural logarithm argument is zero or negative.")
         elif a == 1:
