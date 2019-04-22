@@ -7,7 +7,7 @@ all: ;
 pack:
 
 clean:
-	rm -r $(SRC)__pycache__
+	rm -rf __pycache__
 
 test:
 	$(INT) -m unittest $(PROJ)Mathlib_tests.py
