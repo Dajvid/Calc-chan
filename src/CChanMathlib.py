@@ -131,6 +131,13 @@ class CChanMathlib:
             n = 10000000000.0
             return n * ((a ** (1/n)) - 1)
 
+    ##
+    # @brief Turn input string into list of tokens.
+    # 
+    # @param expr Expression in a string format.
+    #
+    # @return List of tokens.
+    #
     @staticmethod
     def tokenize(expr):
         result = []
@@ -193,11 +200,25 @@ class CChanMathlib:
 
         return result
 
+    ##
+    # @brief Determin if token is terminal.
+    #
+    # @param stack_item Item from stack in form of 2-tuple.
+    #
+    # @return True if stack_item is terminal False if it's not terminal.
+    #
     @staticmethod
     def is_terminal(stack_item):
         e = stack_item[0]
         return (e == "+" or e == "-" or e == "*" or e == "/" or e== "^" or e== "√" or e== "(" or e== ")" or e== "i" or e== "ln" or e== "!" or e== "$")
 
+    ##
+    # @brief Get top terminal from stack.
+    #
+    # @param stack PSA stack.
+    #
+    # @return Top terminal on stack.
+    #
     @staticmethod
     def get_top_terminal(stack):
         for item in reversed(stack):
@@ -205,6 +226,13 @@ class CChanMathlib:
                 return item
         return None
 
+    ##
+    # @brief Get top sequence starting with stack element ('<', '<').
+    # 
+    # @param stack PSA stack.
+    #
+    # @return Top sequence from stack.
+    #
     @staticmethod
     def get_top_sequence(stack):
         for i, item in enumerate(reversed(stack)):
@@ -213,6 +241,14 @@ class CChanMathlib:
         
         return None
 
+    ##
+    # @brief Determin if given sequence is in a list of rules and can be reduced.
+    #
+    # @param sequence List of stack items.
+    # @param rules List of rules.
+    #
+    # @return Index of matching rule or -1 if sequence is not reducible.
+    #
     @staticmethod
     def is_reducible(sequnce, rules):
         stripped_sequence = []
@@ -225,6 +261,12 @@ class CChanMathlib:
         
         return -1
 
+    ##
+    # @brief Insert sequence handle ('<', '<') after first occurrence of given stack element.
+    # 
+    # @param item Stack element to search.
+    # @param stack PSA stack.
+    #
     @staticmethod
     def insert_handle(item, stack):
         for i, stack_item in enumerate(reversed(stack)):
@@ -232,6 +274,15 @@ class CChanMathlib:
                 stack.insert(len(stack) - i, ("<", "<"))
                 return
 
+    ##
+    # @brief Try to recover from parsing error, if error is caused by missing operand for - operator, use - as a part of following value.
+    #
+    # @param input List of input tokens.
+    # @param stack PSA stack.
+    # @param in_top Last token taken from input.
+    #
+    # @return 2-tuple of True/False and new in_top element, True if error can be recovered, False otherwise.
+    #
     @staticmethod
     def minus_recovery(input, stack, in_top):
         try:
@@ -243,6 +294,13 @@ class CChanMathlib:
         except(IndexError):
             return (False, None)
 
+    ##
+    # @brief Evaluate given expression.
+    #
+    # @param expr Expression represented as a string of supported mathematical functions and their operands.
+    #
+    # @return Value of expr after evaluation.
+    #
     @staticmethod
     def eval(expr):
         ##
@@ -430,4 +488,4 @@ class CChanMathlib:
                     raise SyntaxError("Unreducible sequence")
 
             else:
-                raise SyntaxError("Unknown sequence of lexems")
+                raise SyntaxError("Unknown sequence of tokens")
