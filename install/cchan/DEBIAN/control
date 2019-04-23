@@ -1,0 +1,7 @@
+Package: cchan
+Version: 1.0
+Priority: optional
+Architecture: all
+Maintainer: Paks <paks@paks.org>
+Description: Every expression is easy to evaluate with Calc-chan.
+Depends: python3-tk
