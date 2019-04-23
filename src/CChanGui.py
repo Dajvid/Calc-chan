@@ -1,6 +1,6 @@
 # @package CchanGui
 # GUI for calc-chan
-from CChanMathlib import CChanMathlib
+from CChanParser import CChanParser
 import tkinter as tk
 import tkinter.messagebox as tkmsg
 
@@ -44,7 +44,7 @@ def calc_chan_do_the_calc():
     if not expr:
         return#pokud na kalkulace nic neni nic se neprovede
     try:
-        vysledek=str(CChanMathlib.eval(expr))
+        vysledek=str(CChanParser.eval(expr))
     except SyntaxError:
         vysledek="Syntax error"
     except ValueError:
