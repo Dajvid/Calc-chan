@@ -16,7 +16,7 @@ test:
 doc: Doxyfile
 	rm -rf $(DOC)
 	mkdir $(DOC)
-	cd $(DOC) && doxygen ..$(SRC)/$<
+	doxygen $<
 
 run:
 	$(INT) $(PROJ)Gui.py
