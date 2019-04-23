@@ -1,3 +1,3 @@
 #!/bin/bash
 
-rm -rf ../install/cchan/usr/share/cchan/__pycache__
+rm -rf /usr/share/cchan/__pycache__
