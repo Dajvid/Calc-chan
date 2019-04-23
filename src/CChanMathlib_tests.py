@@ -2,7 +2,7 @@
 # Run using: "python3 -m unittest CChanMathlib_tests.py"
 
 import unittest
-from src.CChanMathlib import CChanMathlib
+from CChanMathlib import CChanMathlib
 
 if __name__ == '__main__':
     unittest.main()
