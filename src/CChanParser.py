@@ -169,9 +169,31 @@ class CChanParser:
             if in_top[0] == '-' and a[0] == 'i':
                 del(input[0])
                 return True, (a[0], a[1] * (-1))
-            return False, a
+            return False, in_top
         except IndexError:
-            return False, None
+            return False, in_top
+
+    ##
+    # @brief Attempts to recover from parsing error, if error is caused by missing operand for √ operator, use 2 as a default value.
+    #
+    # @param stack PSA stack.
+    #
+    # @return True if error can be recovered, False otherwise.
+    #
+    @staticmethod
+    def root_recovery(stack):
+        try:
+            a = stack.pop()
+            b = stack.pop()
+            if (a[0] == 'E' and b[0] == '√'):
+                stack.append(("E", int(2)))
+                stack.append(b)
+                stack.append(a)
+                return True
+            else:
+                return False
+        except IndexError:
+            return False
 
     ##
     # @brief Evaluates given expression.
@@ -243,6 +265,8 @@ class CChanParser:
                 index = CChanParser.is_reducible(sequence, rules)
                 if index == -1:
                     ret, in_top = CChanParser.minus_recovery(input, stack, in_top)
+                    if ret is False:
+                        ret = CChanParser.root_recovery(stack)
                     if ret is False:
                         raise SyntaxError("Non-reducible sequence")
                 # recover from parsing 'error'
