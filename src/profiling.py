@@ -35,14 +35,4 @@ for i in (0, len(numarray) - 1):
         print("Input sequence is not valid, please enter a sequence of numbers separated with spaces.")
         exit(1)
 
-'''
-pole = []
-vstup_stripped = []
-import fileinput
-for line in fileinput.input():
-    vstup_stripped.append(line.strip())
-vstup_str = " ".join(vstup_stripped)
-numarray = vstup_str.split(" ")
-'''
-
 std_dev(numarray)

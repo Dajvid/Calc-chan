@@ -1,0 +1,4 @@
+V pripojenıch grafoch profiling_x_numbers.png je mono vidie vısledky profilingu pre 10, 100, 1000, 10000 a 100000 vstupov. 
+ 
+Funkcie ktoré zaberajú najviac èasu sú pow a add. Je to spôsobené ich opakovanım volaním, pri pow = poèet vstupov + 1, pri add = poèet vstupov * 2. Ak by sme chceli ešte viac zefektívni našu kninicu, mali by sme sa zamera práve na tieto funkcie. 
+ 
