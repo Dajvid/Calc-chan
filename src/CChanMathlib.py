@@ -1,9 +1,10 @@
-## @package CChanMathlib
-# Mathematical library for Calc-chan calculator.
+##
+# @package CChanMathlib Mathematical library for Calc-chan calculator.
 #
 
+
 ##
-# @brief Class representing the Calc-chan math library.
+# @brief Class containing method for mathematical operations.
 #
 class CChanMathlib:
 
