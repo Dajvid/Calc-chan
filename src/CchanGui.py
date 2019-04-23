@@ -28,13 +28,21 @@ Možné hlášky na displeji:
 # @brief Function to add string to end of expression
 # @param text_to_add text that will be added to end of expression on display
 def add_to_str(text_to_add):
-        display.insert(tk.INSERT,text_to_add)
+    expr=display.get(1.0,tk.END).strip()
+    if "Syntax error" in expr or "Value error" in expr or "Zero division" in expr:
+        display.delete(1.0,tk.END)#pokud na kalkulace byl error smaze se
+    display.insert(tk.INSERT,text_to_add)
 
     
 ##
 # @brief Function to evaluate expression in display and set that expression back
 def calc_chan_do_the_calc():
     expr=display.get(1.0,tk.END).strip()
+    if "Syntax error" in expr or "Value error" in expr or "Zero division" in expr:
+        display.delete(1.0,tk.END)#pokud na kalkulace byl error smaze se
+        return
+    if not expr:
+        return#pokud na kalkulace nic neni nic se neprovede
     try:
         vysledek=str(CChanMathlib.eval(expr))
     except SyntaxError:
@@ -51,12 +59,19 @@ def calc_chan_do_the_calc():
 # @brief Function to add random number in range <0,1> to end of expression on display
 def str_random():
     #momentalne zbytecna fce protoze pro tlacitko random nezbylo misto
+    expr=display.get(1.0,tk.END).strip()
+    if "Syntax error" in expr or "Value error" in expr or "Zero division" in expr:
+        display.delete(1.0,tk.END)#pokud na kalkulace byl error smaze se
     display.insert(tk.INSERT,str(random.random()))
 
 
 ##
 # @brief Function that deletes last character of expression on display
 def str_ce():
+    expr=display.get(1.0,tk.END).strip()
+    if "Syntax error" in expr or "Value error" in expr or "Zero division" in expr:
+        display.delete(1.0,tk.END)#pokud na kalkulace byl error smaze se
+        return
     line,char=display.index(tk.INSERT).split(".",1)
     if line==1 and char==0:
         return#cursor je na zacatku
@@ -70,7 +85,8 @@ def str_ce():
 def str_del():
     display.delete(1.0,tk.END)
 
-
+##
+# @brief Function that sets dark theme of calculator
 def set_dark():
     global tlacitka
     hlavni.configure(background="#202020")
@@ -84,7 +100,8 @@ def set_dark():
     display.configure(background="#303030",foreground="white")
 
 
-
+##
+# @brief Function that sets light theme of calculator
 def set_light():
     global tlacitka
     hlavni.configure(background="#f7faff")
