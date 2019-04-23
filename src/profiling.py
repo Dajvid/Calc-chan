@@ -25,8 +25,8 @@ def factor(numarray):
 def std_dev(numarray):
     print(CChanParser.eval("2√(1 / ({}-1) * {})".format(len(numarray), factor(numarray))))
 
-'''
-numarray = sys.stdin.read().split(" ")
+
+numarray = sys.stdin.read().split()
 for i in (0, len(numarray) - 1):
     numarray[i] = numarray[i].strip()
     try:
@@ -34,8 +34,8 @@ for i in (0, len(numarray) - 1):
     except ValueError:
         print("Input sequence is not valid, please enter a sequence of numbers separated with spaces.")
         exit(1)
-'''
 
+'''
 pole = []
 vstup_stripped = []
 import fileinput
@@ -43,5 +43,6 @@ for line in fileinput.input():
     vstup_stripped.append(line.strip())
 vstup_str = " ".join(vstup_stripped)
 numarray = vstup_str.split(" ")
+'''
 
 std_dev(numarray)
