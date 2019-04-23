@@ -1,6 +1,7 @@
 PROJ = CChan
 INT = python3
 SRC = /src/
+DOC = ../doc
 
 all: ;
 
@@ -13,11 +14,13 @@ test:
 	$(INT) -m unittest $(PROJ)Mathlib_tests.py
 
 doc: Doxyfile
-	rm -rf ../doc
-	mkdir ../doc
-	cd ../doc && doxygen ..$(SRC)/$<
+	rm -rf $(DOC)
+	mkdir $(DOC)
+	cd $(DOC) && doxygen ..$(SRC)/$<
 
 run:
 	$(INT) $(PROJ)Gui.py
 
 profile:
+
+.PHONY: all clean test run
