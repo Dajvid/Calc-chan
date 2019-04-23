@@ -173,6 +173,13 @@ class CChanParser:
         except IndexError:
             return False, in_top
 
+    ##
+    # @brief Attempts to recover from parsing error, if error is caused by missing operand for √ operator, use 2 as a default value.
+    #
+    # @param stack PSA stack.
+    #
+    # @return True if error can be recovered, False otherwise.
+    #
     @staticmethod
     def root_recovery(stack):
         try:
