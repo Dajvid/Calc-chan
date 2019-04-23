@@ -143,7 +143,7 @@ displayed_text = ""
 which_button = tk.StringVar()
 
 t0 = tk.Button(hlavni, text="0", width=6, heigh=3, command=lambda text_to_add="0": add_to_str(text_to_add))
-tcarka = tk.Button(hlavni, text=",", width=6, heigh=3, command=lambda text_to_add=".": add_to_str(text_to_add))
+tcarka = tk.Button(hlavni, text=".", width=6, heigh=3, command=lambda text_to_add=".": add_to_str(text_to_add))
 # pro tlacitko random zatim neni misto
 # trandom=Button(hlavni,text="rand",width=6,heigh=3,command=str_random)
 t1 = tk.Button(hlavni, text="1", width=6, heigh=3, command=lambda text_to_add="1": add_to_str(text_to_add))
