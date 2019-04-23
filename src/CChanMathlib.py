@@ -109,8 +109,8 @@ class CChanMathlib:
     ##
     # @brief Computes n-th root of a number
     #
-    # @param a base
-    # @param n order of root
+    # @param a Base
+    # @param n Order of root
     #
     # @return n-th root of a
     #
@@ -146,11 +146,13 @@ class CChanMathlib:
             return n * ((a ** (1/n)) - 1)
 
     ##
-    # @brief Turn input string into list of tokens.
+    # @brief Turns input string into list of tokens.
     #
     # @param expr Expression in a string format.
     #
     # @return List of tokens.
+    #
+    # @exception If input sequence expr is not recognizable, the function raises SyntaxError.
     #
     @staticmethod
     def tokenize(expr):
@@ -215,7 +217,7 @@ class CChanMathlib:
         return result
 
     ##
-    # @brief Determin if token is terminal.
+    # @brief Determines if token is terminal.
     #
     # @param stack_item Item from stack in form of 2-tuple.
     #
@@ -227,7 +229,7 @@ class CChanMathlib:
         return (e == "+" or e == "-" or e == "*" or e == "/" or e== "^" or e== "√" or e== "(" or e== ")" or e== "i" or e== "ln" or e== "!" or e== "$")
 
     ##
-    # @brief Get top terminal from stack.
+    # @brief Retrieves top terminal from stack.
     #
     # @param stack PSA stack.
     #
@@ -241,7 +243,7 @@ class CChanMathlib:
         return None
 
     ##
-    # @brief Get top sequence starting with stack element ('<', '<').
+    # @brief Retrieves top sequence starting with stack element ('<', '<').
     #
     # @param stack PSA stack.
     #
@@ -256,7 +258,7 @@ class CChanMathlib:
         return None
 
     ##
-    # @brief Determin if given sequence is in a list of rules and can be reduced.
+    # @brief Determines if given sequence is in a list of rules and can be reduced.
     #
     # @param sequence List of stack items.
     # @param rules List of rules.
@@ -264,9 +266,9 @@ class CChanMathlib:
     # @return Index of matching rule or -1 if sequence is not reducible.
     #
     @staticmethod
-    def is_reducible(sequnce, rules):
+    def is_reducible(sequence, rules):
         stripped_sequence = []
-        for item in sequnce:
+        for item in sequence:
             stripped_sequence.append(item[0])
 
         for i, rule in enumerate(rules):
@@ -276,7 +278,7 @@ class CChanMathlib:
         return -1
 
     ##
-    # @brief Insert sequence handle ('<', '<') after first occurrence of given stack element.
+    # @brief Inserts sequence handle ('<', '<') after first occurrence of given stack element.
     #
     # @param item Stack element to search.
     # @param stack PSA stack.
@@ -289,7 +291,7 @@ class CChanMathlib:
                 return
 
     ##
-    # @brief Try to recover from parsing error, if error is caused by missing operand for - operator, use - as a part of following value.
+    # @brief Attempts to recover from parsing error, if error is caused by missing operand for - operator, use - as a part of following value.
     #
     # @param input List of input tokens.
     # @param stack PSA stack.
@@ -309,22 +311,17 @@ class CChanMathlib:
             return (False, None)
 
     ##
-    # @brief Evaluate given expression.
+    # @brief Evaluates given expression.
     #
     # @param expr Expression represented as a string of supported mathematical functions and their operands.
     #
     # @return Value of expr after evaluation.
     #
+    # @exception SyntaxError If the input sequence expr cannot be reduced, the function raises SyntaxError.
+    # If the input sequence contains unknown symbols, the function also raises SyntaxError.
+    #
     @staticmethod
     def eval(expr):
-        ##
-        # Eval function
-        # Args:
-        #     expr: expression represented as a string of supported mathematical functions and their operands
-        # Returns:
-        #     Value of expr after evaluation.
-        # Raises:
-        #     ValueError, SyntaxError, ZeroDivisionError.
         PSA_table = {
             "+"  : {"+" : ">", "-" : ">", "*": "<", "/": "<", "^": "<", "√": "<", "(": "<", ")": ">", "i": "<", "ln": "<", "!":  "", "$": ">"},
             "-"  : {"+" : ">", "-" : ">", "*": "<", "/": "<", "^": "<", "√": "<", "(": "<", ")": ">", "i": "<", "ln": "<", "!":  "", "$": ">"},
