@@ -1,18 +1,18 @@
-Prostředí
+Prostredi
 ---------
 
 Ubuntu 64bit
 
-Autoři
+Autori
 ------
 
 Paks
-- xhanak34 Karel Hanák
-- xhavli46 Lukáš Havlíček
-- xjakub34 Adam Jakubovský
-- xsedla1d David Sedlák
+- xhanak34 Karel Hanak
+- xhavli46 Lukas Havlicek
+- xjakub34 Adam Jakubovsky
+- xsedla1d David Sedlak
 
 Licence
 -------
 
-Tento program je poskytován pod licencí GNU GPLv3
+Tento program je poskytovan pod licenci GNU GPLv3
