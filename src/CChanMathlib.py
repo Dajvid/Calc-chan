@@ -79,7 +79,11 @@ class CChanMathlib:
         elif a == 0:
             return 1
         else:
-            return a * CChanMathlib.fact(a - 1)
+            res = 1
+            while a > 0:
+                res *= a
+                a -= 1
+            return res
 
     ##
     # @brief Computes base to the power of exponent.
