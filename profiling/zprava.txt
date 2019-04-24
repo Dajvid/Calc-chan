@@ -1,4 +1,4 @@
-V pripojen�ch grafoch profiling_x_numbers.png je mo�no vidie� v�sledky profilingu pre 10, 100, 1000, 10000 a 100000 vstupov. 
- 
-Funkcie ktor� zaberaj� najviac �asu s� pow a add. Je to sp�soben� ich opakovan�m volan�m, pri pow = po�et vstupov + 1, pri add = po�et vstupov * 2. Ak by sme chceli e�te viac zefekt�vni� na�u kni�nicu, mali by sme sa zamera� pr�ve na tieto funkcie. 
- 
+V grafech profiling_x_numbers.png jsou výsledky profilingu pro různé velikosti vstupních dat, konkrétně pro 10, 100, 1000, 10000 a 100000 vstupů.
+Nejvíce času program při výpočtu směrodatné odchylky tráví ve funkcích z matematické knihovny add a pow. Což je způsobené jejich častým opakováním.
+Pro pow = počet vstupů + 1 a pro add = počet vstupů *2. Pro další zefektivnění knihovny pro toto konkréřní použití (výpočet směrodatné odchylky) by bylo
+nejlepší optimalizovat právě tyto nejčastěji používané funkce.
