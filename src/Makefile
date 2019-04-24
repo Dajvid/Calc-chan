@@ -16,7 +16,7 @@ xhanak34_xhavli46_xjakub34_xsedla1d.zip:
 	mv ../../xhanak34_xhavli46_xjakub34_xsedla1d/repo/doc ../../xhanak34_xhavli46_xjakub34_xsedla1d/doc
 	mv ../../xhanak34_xhavli46_xjakub34_xsedla1d/repo/install ../../xhanak34_xhavli46_xjakub34_xsedla1d/install
 	rm -rf ../../xhanak34_xhavli46_xjakub34_xsedla1d/install/cchan
-	zip -r ../../$@ ../../xhanak34_xhavli46_xjakub34_xsedla1d/
+	cd ../.. && zip -r $@ xhanak34_xhavli46_xjakub34_xsedla1d
 	rm -rf ../../xhanak34_xhavli46_xjakub34_xsedla1d
 
 clean:
