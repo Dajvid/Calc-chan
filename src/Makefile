@@ -20,7 +20,9 @@ xhanak34_xhavli46_xjakub34_xsedla1d.zip:
 	rm -rf ../../xhanak34_xhavli46_xjakub34_xsedla1d
 
 clean:
-	rm -rf __pycache__ ../install/cchan/usr/share/cchan/CChanGui.py ../install/cchan/usr/share/cchan/CChanMathlib.py ../install/cchan/usr/share/cchan/CChanParser.py
+	rm -rf __pycache__
+	rm -rf ../install/cchan/usr/share/cchan/*.py
+	rm -rf ../install/cchan/usr/local/bin/cchan
 
 test:
 	$(INT) -m unittest $(PROJ)Mathlib_tests.py
