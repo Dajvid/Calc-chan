@@ -33,7 +33,7 @@ doc: Doxyfile
 run:
 	$(INT) $(PROJ)Gui.py
 
-profile:
+profile: ;
 
 installer: CChanMathlib.py CChanParser.py create_package.sh
 	bash create_package.sh
