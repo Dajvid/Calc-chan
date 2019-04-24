@@ -1,0 +1,4 @@
+xhanak34 106.67 (testy, implementace operací matematické knihovny, dokumentace, manuál)
+xhavli46 106.67 (GUI, mockup, nápověda)
+xjakub34 80 (profiling)
+xsedla1d 106.67 (tvorba repozitáře, specifikace matematické knihovny, Makefile, pokročilé zpracování výrazů, instalátor a odinstalátor)
