@@ -20,7 +20,7 @@ xhanak34_xhavli46_xjakub34_xsedla1d.zip:
 	rm -rf ../../xhanak34_xhavli46_xjakub34_xsedla1d
 
 clean:
-	rm -rf __pycache__ ../install/cchan/usr
+	rm -rf __pycache__ ../install/cchan/usr/share/cchan/CChanGui.py ../install/cchan/usr/share/cchan/CChanMathlib.py ../install/cchan/usr/share/cchan/CChanParser.py
 
 test:
 	$(INT) -m unittest $(PROJ)Mathlib_tests.py
@@ -38,4 +38,4 @@ profile:
 installer: CChanMathlib.py CChanParser.py create_package.sh
 	bash create_package.sh
 
-.PHONY: all pack xhanak34_xhavli46_xjakub34_xsedla1d.zip clean test run installer
+.PHONY: all pack xhanak34_xhavli46_xjakub34_xsedla1d.zip clean test doc run profile installer
